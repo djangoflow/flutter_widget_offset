@@ -254,10 +254,10 @@ class OffsetChangeObserver {
   /// in the [onChanged] callback function,
   /// otherwise infinite recursion will occur.
   void onChangeState() async {
-    if (!_widgetMounted) return;
+    if (!context.mounted) return;
 
     await Future.delayed(const Duration(milliseconds: 50));
-
+    if (!context.mounted) return;
     RenderBox? box = context.findRenderObject() as RenderBox?;
     if (box == null || box.hasSize == false) {
       return;
